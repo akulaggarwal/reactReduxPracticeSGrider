@@ -11,20 +11,20 @@ class WeatherList extends Component {
   renderWeather(cityData) {
     // const name = this.props.weather.city.name;
     const name = 'sf'
-    const main = cityData.main;
-    let temp = main.temp;
+    // const main = cityData.main;
+    let temp = cityData.list.map(weather => weather.main.temp);
 
     // let date = Date(cityData.dt);
     // console.log(Object.keys(date));
     console.log('cityData obj:', cityData);
     return (
-      <tr key={cityData.dt_txt}>
+      <tr key={cityData.message}>
         <td>{name}</td>
-        <td>{cityData.dt_txt}</td>
         <td>
+          <Sparklines height={120} width={180} data={temp}>
+            <SparklinesLine color="red" />
+          </Sparklines>
         </td>
-        <td>{main.pressure}</td>
-        <td>{main.humidity}</td>
       </tr>
     )
   }
@@ -39,14 +39,13 @@ class WeatherList extends Component {
         <thead>
           <tr>
             <th>city</th>
-            <th>@</th>
             <th>Temp</th>
             <th>Pressure</th>
             <th>Humidity</th>
           </tr>
         </thead>
         <tbody>
-          {this.props.weather[0].list.map(this.renderWeather)}
+          {this.props.weather.map(this.renderWeather)}
         </tbody>
       </table>
     )
