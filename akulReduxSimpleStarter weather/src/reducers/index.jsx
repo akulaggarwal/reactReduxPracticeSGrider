@@ -1,5 +1,3 @@
-import React, {Component} from 'react';
-
 import { combineReducers } from 'redux';
 import WeatherReducer from './reducer_weather';
 // import ActiveBook from './reducer_active_book';
